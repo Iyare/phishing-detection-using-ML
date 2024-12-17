@@ -1,4 +1,4 @@
-# Step 1 import libraries
+# Import libraries
 import pandas as pd 
 import numpy as np
 from sklearn.model_selection import train_test_split 
@@ -11,24 +11,22 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
-
 from sklearn.metrics import confusion_matrix
-
 import matplotlib.pyplot as plt
 
 
-# Step 2 read the csv files and create pandas dataframes
+# Read legitimate and phishing CSV files and create pandas dataframes
 legitimate_df = pd.read_csv("structured_data/structured_data_legitimate.csv")
 phishing_df = pd.read_csv("structured_data/structured_data_phishing.csv")
 
 
-# Step 3 combine legitimate and phishing dataframes, and shuffle
+# Combine legitimate and phishing dataframes, and shuffle
 df = pd.concat([legitimate_df, phishing_df], axis=0)
 
 df = df.sample(frac=1)
 
 
-# Step 4 remove'url' and remove duplicates, then we can create X and Y for the models, Supervised Learning
+# Remove URL column and duplicate records. Create X (test) and Y (expected answer) for the models, Supervised Learning
 df = df.drop('URL', axis=1)
 
 df = df.drop_duplicates()
@@ -37,11 +35,11 @@ X = df.drop('label', axis=1)
 Y = df['label']
 
 
-# Step 5 split data to train and test
+# Split data to train and test
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=10)
 
 
-# Step 6 create a ML model using sklearn
+# Create a ML models using sklearn
 svm_model = svm.LinearSVC()
 
 # Random Forest
@@ -65,19 +63,19 @@ kn_model = KNeighborsClassifier()
 # Gaussian Process
 #gp_model = GaussianProcessClassifier(1.0 * RBF(1.0))
 
-# Step 7 train the model
+# Train the model
 svm_model.fit(x_train, y_train)
 
 
-# Step 8 make some predictions using test data
+# Make some predictions using test data
 predictions = svm_model.predict(x_test)
 
 
-# Step 9 create a confusion matrix and tn, tp, fn , fp
+# Create a confusion matrix and tn, tp, fn , fp
 tn, fp, fn, tp = confusion_matrix(y_true=y_test, y_pred=predictions).ravel()
 
 
-# Step 10 calculate accuracy, precision and recall scores
+# Calculate accuracy, precision and recall scores
 accuracy = (tp + tn) / (tp + tn + fp + fn)
 precision = tp / (tp + fp)
 recall = tp / (tp + fn)
@@ -145,7 +143,7 @@ svm_accuracy_list, svm_precision_list, svm_recall_list = [], [], []
 nb_accuracy_list, nb_precision_list, nb_recall_list = [], [], []
 nn_accuracy_list, nn_precision_list, nn_recall_list = [], [], []
 kn_accuracy_list, kn_precision_list, kn_recall_list = [], [], []
-#gp_accuracy_list, gp_precision_list, gp_recall_list = [], [], []
+
 
 
 for i in range(0, K):
@@ -212,16 +210,6 @@ for i in range(0, K):
     kn_precision_list.append(kn_precision)
     kn_recall_list.append(kn_recall)
 
-    """
-    # ----- GAUSSIAN PROCESS ----- #
-    gp_model.fit(X_train_list[i], Y_train_list[i])
-    gp_predictions = gp_model.predict(X_test_list[i])
-    tn, fp, fn, tp = confusion_matrix(y_true=Y_test_list[i], y_pred=gp_predictions).ravel()
-    gp_accuracy, gp_precision, gp_recall = calculate_measures(tn, tp, fn, fp)
-    gp_accuracy_list.append(gp_accuracy)
-    gp_precision_list.append(gp_precision)
-    gp_recall_list.append(gp_recall)
-    """
 
 RF_accuracy = sum(rf_accuracy_list) / len(rf_accuracy_list)
 RF_precision = sum(rf_precision_list) / len(rf_precision_list)
@@ -284,15 +272,7 @@ KN_recall = sum(kn_recall_list) / len(kn_recall_list)
 print("K-Neighbours Classifier accuracy ==> ", KN_accuracy)
 print("K-Neighbours Classifier precision ==> ", KN_precision)
 print("K-Neighbours Classifier recall ==> ", KN_recall)
-"""
-GP_accuracy = sum(gp_accuracy_list) / len(gp_accuracy_list)
-GP_precision = sum(gp_precision_list) / len(gp_precision_list)
-GP_recall = sum(gp_recall_list) / len(gp_recall_list)
 
-print("Gaussian Process accuracy ==> ", GP_accuracy)
-print("Gaussian Process precision ==> ", GP_precision)
-print("Gaussian Process recall ==> ", GP_recall)
-"""
 
 data = {'accuracy': [NB_accuracy, SVM_accuracy, DT_accuracy, RF_accuracy, AB_accuracy, NN_accuracy, KN_accuracy],
         'precision': [NB_precision, SVM_precision, DT_precision, RF_precision, AB_precision, NN_precision, KN_precision],
