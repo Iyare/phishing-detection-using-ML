@@ -1,8 +1,8 @@
 # Step 1 import libraries
-import pandas as pd
+import pandas as pd 
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn import svm
+from sklearn.model_selection import train_test_split 
+from sklearn import svm 
 from sklearn import tree
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
@@ -307,36 +307,3 @@ df_results = pd.DataFrame(data=data, index=index)
 # visualize the dataframe
 ax = df_results.plot.bar(rot=0)
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
