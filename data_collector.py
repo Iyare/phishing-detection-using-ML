@@ -50,10 +50,10 @@ def create_structured_data(url_list):
                 vector.append(str(url_list[i]))
                 data_list.append(vector)
         except LocationParseError as e: 
-            print(f"URL: {i}\n An error occurred while parsing the location: {e}\nStatus: Error")
+            print(i,"An error occurred while parsing the location:", e)
             continue
         except req.exceptions.RequestException as e:
-            print(i, "---->", e)
+            print(i,"---->", e)
             continue
         
     return data_list
