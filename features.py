@@ -56,21 +56,20 @@ def has_password(soup):
         return 0
 
 # has email input
-def has_email(soup):
+def has_email_input(soup):
     if  soup.find_all("input", type="email") or soup.find_all("input", attrs={"name":"email"}) or soup.find_all("input", id="email"):
         return 1
     else:
         return 0
 
-# has hidden input element
-def has_hidden_input(soup):
-    thisList = []
-    for link in soup.find_all('input'):
-        if link.get("hidden") != None:
-            thisList.append(link.get("hidden"))
+# has hidden element
+def has_hidden_element(soup):
+    for input in soup.find_all("input"):
+        if input.get("type") == "hidden":
+            return 1
         else:
             pass
-    return len(thisList)
+    return 0
 
 # has an audio
 def has_audio(soup):
@@ -135,13 +134,7 @@ def has_nav(soup):
     else:
         return 0
     
-#has main
-def has_main(soup):
-    if soup.find_all("main"):
-        return 1
-    else:
-        return 0
-    
+
 #has iframe
 def has_iframe(soup):
     if soup.find_all("iframe"):
@@ -162,14 +155,20 @@ def has_table(soup):
         return 1
     else:
         return 0
-
-#has pictures with varying sources
+    
+#has picture tags
 def has_picture(soup):
     if soup.find_all("picture"):
         return 1
     else:
         return 0
     
+def has_text_input(soup):
+    for input in soup.find_all("input"):
+        if input.get("type") == "text":
+            return 1
+    return 0
+
 #num of divs
 def num_divs(soup):
     return len(soup.find_all("div"))
@@ -181,8 +180,6 @@ def num_metas(soup):
 #number of figure
 def num_figures(soup):
     return len(soup.find_all("figure"))
-
-#length of text
 
 #num of tables
 def num_tables(soup):
@@ -196,7 +193,7 @@ def num_spans(soup):
 def num_anchors(soup):
     return len(soup.find_all("a"))
 
-#number of images with alt
+'''#number of images with alt
 def num_alts(soup):
     altsList = []
     for attr in soup.find_all("img"):
@@ -205,7 +202,7 @@ def num_alts(soup):
         else:
             pass
     return len(altsList)
-
+'''
 # number of inputs
 def num_inputs(soup):
     return len(soup.find_all("input"))
@@ -250,19 +247,25 @@ def num_hrefs(soup):
 def num_paragraphs(soup):
     return len(soup.find_all("p"))
 
+# number of source tags
+def num_sources(soup):
+    return len(soup.find_all("source"))
+
 # number of scripts
 def num_scripts(soup):
     return len(soup.find_all("script"))
 
 # length of title
-def num_titles(soup):
+def title_length(soup):
     if soup.find_all("title"):
         return len(soup.title.get_text())
     else: 
         return 0
-    
+
+# length of text on page
 def text_length(soup):
     content = soup.get_text()
     return len(content)
+
 
 

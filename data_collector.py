@@ -13,7 +13,7 @@ session.verify = False
 
 
 # Import CSV to dataframe
-url_file_name = "phishing_urls.csv"
+url_file_name = "URLs/phishing_urls.csv"
 
 data_frame = pd.read_csv(url_file_name)
 
@@ -28,12 +28,12 @@ url_list= data_frame["url"].to_list()
 #Restrict the URL count
 
 begin = 0
-end = 25000
+end = 100000
 collection_list = url_list[begin:end]
 
 #Adding "http" only for only legitimated URLS/domains
-tag = "http://"
-collection_list = [tag + url for url in collection_list]
+# tag = "http://"
+# collection_list = [tag + url for url in collection_list]
 
 #function to scrape the content of the URL and convert to a structured form for each URL
 
@@ -69,8 +69,8 @@ columns = [
         "has_submit",
         "has_link",
         "has_password",
-        "has_email",
-        "has_hidden_input",
+        "has_email_input",
+        "has_hidden_element",
         "has_audio",
         "has_video",
         "has_h1",
@@ -81,15 +81,16 @@ columns = [
         "has_textarea",
         "has_nav",
         "has_iframe",
+        "has_object"
         "has_table",
         "has_picture",
+        "has_text_input"
         "num_divs",
         "num_metas",
         "num_figures",
         "num_tables",
         "num_spans",
         "num_anchors",
-        "num_alts",
         "num_inputs",
         "num_buttons",
         "num_images",
@@ -97,12 +98,13 @@ columns = [
         "num_lists",
         "num_th",
         "num_tr",
-        "num_href",
+        "num_hrefs",
         "num_paragraphs",
+        "num_sources",
         "num_scripts",
-        "num_titles",
+        "title_length",
         "text_length",
-        "url",
+        "url"
 ]
 
 #creating dataframe
