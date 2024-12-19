@@ -41,28 +41,29 @@ def create_vector(soup):
         fe.has_nav(soup),
         fe.has_iframe(soup),
         fe.has_object(soup),
-        fe.has_table(soup),
         fe.has_picture(soup),
-        fe.num_divs(soup),
-        fe.num_metas(soup),
-        fe.num_figures(soup),
-        fe.num_tables(soup),
-        fe.num_spans(soup),
-        fe.num_anchors(soup),
-        fe.num_inputs(soup),
+        fe.has_text_input(soup),
+        fe.num_inputs(soup),        
         fe.num_buttons(soup),
-        fe.num_images(soup),
         fe.num_options(soup),
         fe.num_lists(soup),
         fe.num_th(soup),
         fe.num_tr(soup),
         fe.num_hrefs(soup),
         fe.num_paragraphs(soup),
-        fe.num_sources(soup),
         fe.num_scripts(soup),
         fe.title_length(soup),
-        fe.text_length(soup)
+        fe.text_length(soup),
+        fe.num_anchors(soup),
+        fe.num_images(soup),
+        fe.num_divs(soup),
+        fe.num_figures(soup),
+        fe.num_metas(soup),
+        fe.num_sources(soup),
+        fe.num_spans(soup),
+        fe.num_tables(soup)       
     ]
+
 
 #4 Runs step 1,2,3 for all HTML files and create a 2-D array
 folder = "dataset"
@@ -79,6 +80,7 @@ def create_2d_list(folder_name):
 data = create_2d_list(folder)
 
 columns = [
+        "",
         "has_title",
         "has_input",
         "has_button",
@@ -99,30 +101,30 @@ columns = [
         "has_nav",
         "has_iframe",
         "has_object"
-        "has_table",
         "has_picture",
-        "has_text_input"
-        "num_divs",
-        "num_metas",
-        "num_figures",
-        "num_tables",
-        "num_spans",
-        "num_anchors",
+        "has_text_input",
         "num_inputs",
         "num_buttons",
-        "num_images",
         "num_options",
         "num_lists",
         "num_th",
         "num_tr",
         "num_hrefs",
         "num_paragraphs",
-        "num_sources",
         "num_scripts",
         "title_length",
         "text_length",
+        "num_anchors",
+        "num_images",
+        "num_divs",
+        "num_figures",
+        "num_metas",
+        "num_sources",
+        "num_spans", 
+        "num_tables",
+        
 ]
 
 dataframe = pandas.DataFrame(data=data, columns=columns)
 
-# print(dataframe)
+print(dataframe)

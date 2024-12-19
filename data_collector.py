@@ -82,29 +82,28 @@ columns = [
         "has_nav",
         "has_iframe",
         "has_object"
-        "has_table",
         "has_picture",
-        "has_text_input"
-        "num_divs",
-        "num_metas",
-        "num_figures",
-        "num_tables",
-        "num_spans",
-        "num_anchors",
+        "has_text_input",
         "num_inputs",
         "num_buttons",
-        "num_images",
         "num_options",
         "num_lists",
         "num_th",
         "num_tr",
         "num_hrefs",
         "num_paragraphs",
-        "num_sources",
         "num_scripts",
         "title_length",
         "text_length",
-        "url"
+        "num_anchors",
+        "num_images",
+        "num_divs",
+        "num_figures",
+        "num_metas",
+        "num_sources",
+        "num_spans", 
+        "num_tables",
+        "URL"      
 ]
 
 #creating dataframe

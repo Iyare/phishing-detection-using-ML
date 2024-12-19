@@ -193,16 +193,6 @@ def num_spans(soup):
 def num_anchors(soup):
     return len(soup.find_all("a"))
 
-'''#number of images with alt
-def num_alts(soup):
-    altsList = []
-    for attr in soup.find_all("img"):
-        if attr.get("alt") != None:
-            altsList.append(attr.get("alt"))
-        else:
-            pass
-    return len(altsList)
-'''
 # number of inputs
 def num_inputs(soup):
     return len(soup.find_all("input"))

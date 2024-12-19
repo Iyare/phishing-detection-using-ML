@@ -26,8 +26,9 @@ df = pd.concat([legitimate_df, phishing_df], axis=0)
 df = df.sample(frac=1)
 
 
+
 # Remove URL some unnecessary columns from feature vectors. Create X (test) and Y (expected answer) for the models, Supervised Learning
-df = df.drop('URL', axis=1)
+df = df.drop("URL", axis=1)
 
 df = df.drop("number_of_clickable_button", axis = 1)
 
