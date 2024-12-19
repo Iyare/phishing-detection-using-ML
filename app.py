@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 from urllib3.exceptions import LocationParseError
 
 
-st.title("A Phishing Detection App")
+st.title("Phishing Detection App - Project")
 
-st.write("This is a Content-Based ML-Based app is developed as ")
+st.write("This is a Content-Based ML-Based app is developed as a project work.")
 
 with st.expander("PROJECT DETAILS"):
     st.subheader("Approach")
@@ -18,7 +18,7 @@ with st.expander("PROJECT DETAILS"):
     st.write("For  this project, I created my own dataset and defined features based on some reviewed literature and manual inspection of some phishing websites")
     st.write("The request library was used to scrap the webpages and BeautifulSoup module  was used to parse and extract features")
     st.write("The  source code and datasets are available in the below  Github")
-    st.write("_https://www.github.com_")
+    st.write("_https://www.github.com/_")
     
     st.subheader("Datasets")
     st.write(" I used _'phishtank.org'_ & _'tranco-list.eu'_ as data sources.")
@@ -73,11 +73,12 @@ with st.expander("PROJECT DETAILS"):
     st.write('NN --> Neural Network')
     st.write('KN --> K-Neighbours')
 
-with st.expander('EXAMPLE PHISHING URLs:'):
-    st.write('_https://rtyu38.godaddysites.com/_')
-    st.write('_https://karafuru.invite-mint.com/_')
-    st.write('_https://defi-ned.top/h5/#/_')
-    st.caption('REMEMBER, PHISHING WEB PAGES HAVE SHORT LIFECYCLE! SO, THE EXAMPLES SHOULD BE UPDATED!')
+with st.expander('SOME PHISHING URLs:'):
+    st.write('https://krajanelogin.webflow.io')
+    st.write('https://auth--m-start--ttrezr.webflow.io/')
+    st.write('http://evri.poaekhgroup.xyz')
+    st.caption('Please note that phishing URLs have a very short lifecycle. So the above URLs might be offline at anytime!')
+    st.caption("Visit _https://www.phishtank.org_ for newly listed phishing URLs for testing")
 
 choice = st.selectbox("Please select your machine learning model",
                  [
@@ -111,28 +112,31 @@ else:
     st.write('KN model is selected!')
 
 
-url = st.text_input('Enter the URL')
+url = st.text_input('Enter the URL in full. Example: https://example.com')
 # check the url is valid or not
 if st.button('Check URL'):
-    try:
-        response = re.get(url, verify=False, timeout=30)
-        if response.status_code != 200:
-            print(". HTTP connection was not successful for the URL: ", url)
-        else:
-            soup = BeautifulSoup(response.content, "html.parser")
-            vector = [fe.create_vector(soup)]  # it should be 2d array, so I added []
-            result = model.predict(vector)
-            if result[0] == 0:
-                st.success("This web page seems a legitimate!")
-                # st.balloons()
+    with st.spinner("Please wait..."):
+        try:
+            response = re.get(url, verify=False, timeout=30)
+            if response.status_code != 200:
+                print("HTTP connection was not successful for the URL: ", url)
+                st.error("HTTP connection was not successful for this URL")
             else:
-                st.warning("Attention! This web page is a potential PHISHING!")
-                # st.snow()
-                
-    except LocationParseError as e: 
+                soup = BeautifulSoup(response.content, "html.parser")
+                vector = [fe.create_vector(soup)]  # it should be 2d array, so I added []
+                result = model.predict(vector)
+                if result[0] == 0:
+                    st.success("This web page seems a legitimate!")
+                    st.balloons()
+                else:
+                    st.warning("Attention! This is a potential PHISHING site!")
+                    # st.snow()
+                    
+        except LocationParseError as e: 
             print("URL:An error occurred while parsing the location:", e)
-            
-    except re.exceptions.RequestException as e:
-        print("--> ", e)
-    
+            st.error("Sorry, something went wrong with the connection", icon="🚨")
+                        
+        except re.exceptions.RequestException as e:
+            print("--> ", e)
+            st.error("Sorry, something went wrong with the connection", icon="🚨")
 
