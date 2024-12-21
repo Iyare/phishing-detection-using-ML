@@ -117,10 +117,11 @@ url = st.text_input('Enter the URL in full. Example: https://example.com')
 if st.button('Check URL'):
     with st.spinner("Please wait..."):
         try:
-            response = re.get(url, verify=False, timeout=30)
+            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"}
+            response = re.get(url, headers = headers, verify=False, timeout=30)
             if response.status_code != 200:
                 print("HTTP connection was not successful for the URL: ", url)
-                st.error(f"HTTP connection was not successful for this URL. Error code:{response.status_code}")
+                st.error(f"HTTP connection was not successful for this URL. Error code: {response.status_code}")
             else:
                 soup = BeautifulSoup(response.content, "html.parser")
                 vector = [fe.create_vector(soup)]  # it should be 2d array, so I added []
