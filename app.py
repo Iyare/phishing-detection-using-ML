@@ -117,7 +117,14 @@ url = st.text_input('Enter the URL in full. Example: https://example.com')
 if st.button('Check URL'):
     with st.spinner("Please wait..."):
         try:
-            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"}
+            headers = {
+                "authority": "www.google.com",
+                "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "accept-language": "en-US,en;q=0.9",
+                "cache-control": "max-age=0",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+                # add more headers as needed
+            }
             response = re.get(url, headers = headers, verify=False, timeout=30)
             if response.status_code != 200:
                 print("HTTP connection was not successful for the URL: ", url)
