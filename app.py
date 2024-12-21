@@ -120,7 +120,7 @@ if st.button('Check URL'):
             response = re.get(url, verify=False, timeout=30)
             if response.status_code != 200:
                 print("HTTP connection was not successful for the URL: ", url)
-                st.error("HTTP connection was not successful for this URL. Error code was not 200!")
+                st.error("HTTP connection was not successful for this URL. Error code:!", response.status_code)
             else:
                 soup = BeautifulSoup(response.content, "html.parser")
                 vector = [fe.create_vector(soup)]  # it should be 2d array, so I added []
