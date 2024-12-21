@@ -135,8 +135,10 @@ if st.button('Check URL'):
         except LocationParseError as e: 
             print("URL:An error occurred while parsing the location:", e)
             st.error("Sorry, something went wrong with the connection", icon="🚨")
+            st.exception(e)
                         
         except re.exceptions.RequestException as e:
             print("--> ", e)
             st.error("Sorry, something went wrong with the connection", icon="🚨")
+            st.exception(e)
 
