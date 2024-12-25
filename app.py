@@ -5,26 +5,23 @@ from bs4 import BeautifulSoup
 import requests as re
 import matplotlib.pyplot as plt
 from urllib3.exceptions import LocationParseError
-import random as random
-from random import choice
 
 
-st.title("Phishing Detection App - Project")
+st.title("Phishing Detection Project")
 
 st.write("This is a Content-Based ML-Based app is developed as a project work.")
 
 with st.expander("PROJECT DETAILS"):
     st.subheader("Approach")
-    st.write("I used supervised learning to classify phishing and legitimate websites"
-             "Sckit-learn  was also used for the ML Models.")
-    st.write("For  this project, I created my own dataset and defined features based on some reviewed literature and manual inspection of some phishing websites")
-    st.write("The request library was used to scrap the webpages and BeautifulSoup module  was used to parse and extract features")
-    st.write("The  source code and datasets are available in the below  Github")
+    st.write("This project adopted a supervised learning method in training several Scikit-learn models commonly used in classification projects. These models include: Gaussian Naive Bayes, Support Vector Machines, Decision Trees, Random Forest, AdaBoost, Neural Network, and K-Neighbours. After training the models with labeled data, models were tested with a seperate test data. Results detailing the accuracy, recall and precision values were obtained for each model.  The best performing model was the Random Forest with a precision of 81%, recall of 69%, and a 98% accuracy score This web application allows users to use the trained models to detect  for  nto phishing or legitimate based on their HTML content NOT URL features like URL length, etc.")
+    
+    st.write("The request library and BeautifulSoup4 module in python was used to scrap the webpages, parse and extract features")
+    st.write("The source code and datasets are available in the below Github")
     st.write("_https://www.github.com/_")
     
-    st.subheader("Datasets")
-    st.write(" I used _'phishtank.org'_ & _'tranco-list.eu'_ as data sources.")
-    st.write("Dataset contained a total of **_26584_** websites ===> **_16060_ - legitimate** websites | **_10524_** phishing websites")
+    st.subheader("Data Sources")
+    st.write("Phishing URLs were obtained from _'phishtank.org'_ while legitimate URLs were downloaded from _'tranco-list.eu'_ .")
+    st.write("A total of **_26584_** feature vectors were extracted from both phishing and legitimate URLs downloaded.**_16060_** - were extracted from legitimate webpages while **_10524_** were extracted from phishing websites.")
     
     # ----- FOR THE PIE CHART ----- #
     labels = 'phishing', 'legitimate'
@@ -59,6 +56,7 @@ with st.expander("PROJECT DETAILS"):
     )
 
     st.subheader('Features')
+    st.write("The dataset used in training and testing the models was created by defining and extracting specific features. These features were chosen based on several literatures reviewed and manual inspection of some phishing and legitimate websites")
     st.write('I used only content-based features. I didn\'t use url-based faetures like length of url etc.'
              'Most of the features extracted using find_all() method of BeautifulSoup module after parsing html.')
 
@@ -66,6 +64,7 @@ with st.expander("PROJECT DETAILS"):
     st.write('I used 7 different ML classifiers of scikit-learn and tested them implementing k-fold cross validation.'
              'Firstly obtained their confusion matrices, then calculated their accuracy, precision and recall scores.'
              'Comparison table is below:')
+    
     st.table(ml.df_results)
     st.write('NB --> Gaussian Naive Bayes')
     st.write('SVM --> Support Vector Machine')
@@ -76,11 +75,11 @@ with st.expander("PROJECT DETAILS"):
     st.write('KN --> K-Neighbours')
 
 with st.expander('SOME PHISHING URLs:'):
-    st.write('https://krajanelogin.webflow.io')
+    st.write('https://authmycookie.com/rt4.php?r3=CRA6RBEOQxAMFkFdRQlJF15bDhUCQQtSDkEDAAkOGVcNBQkBQB8%3D')
     st.write('https://auth--m-start--ttrezr.webflow.io/')
     st.write('http://evri.poaekhgroup.xyz')
     st.caption('Please note that phishing URLs have a very short lifecycle. So the above URLs might be offline at anytime!')
-    st.caption("Visit _https://www.phishtank.org_ for newly listed phishing URLs for testing")
+    st.caption("Visit _https://www.phishtank.org_ for newly listed phishing URLs.")
 
 choice = st.selectbox("Please select your machine learning model",
                  [
