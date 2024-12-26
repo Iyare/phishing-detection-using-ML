@@ -75,9 +75,9 @@ with st.expander("PROJECT DETAILS"):
     st.write('KN --> K-Neighbours')
 
 with st.expander('SOME PHISHING URLs:'):
-    st.write('https://authmycookie.com/rt4.php?r3=CRA6RBEOQxAMFkFdRQlJF15bDhUCQQtSDkEDAAkOGVcNBQkBQB8%3D')
-    st.write('https://auth--m-start--ttrezr.webflow.io/')
-    st.write('http://evri.poaekhgroup.xyz')
+    st.write(' 	https://supllementtos.online')
+    st.write(' 	https://sorteio-viva.digital')
+    st.write(' 	https://supllementtos.site')
     st.caption('Please note that phishing URLs have a very short lifecycle. So the above URLs might be offline at anytime!')
     st.caption("Visit _https://www.phishtank.org_ for newly listed phishing URLs.")
 
