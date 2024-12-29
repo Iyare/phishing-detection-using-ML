@@ -13,7 +13,8 @@ st.write("This is a Content-Based ML-Based app is developed as a project work.")
 
 with st.expander("PROJECT DETAILS"):
     st.subheader("Approach")
-    st.write("This project adopted a supervised learning method in training several Scikit-learn models commonly used in classification projects. These models include: Gaussian Naive Bayes, Support Vector Machines, Decision Trees, Random Forest, AdaBoost, Neural Network, and K-Neighbours. After training the models with labeled data, models were tested with a seperate test data. Results detailing the accuracy, recall and precision values were obtained for each model.  The best performing model was the Random Forest with a precision of 81%, recall of 69%, and a 98% accuracy score This web application allows users to use the trained models to detect  for  nto phishing or legitimate based on their HTML content NOT URL features like URL length, etc.")
+    st.write("This project adopted a supervised learning method in training several Scikit-learn models commonly used in classification projects. These models include: Gaussian Naive Bayes, Support Vector Machines, Decision Trees, Random Forest, AdaBoost, Neural Network, and K-Neighbours. After training the models with labeled data, models were tested with a seperate test data. Results detailing the accuracy, recall and precision values were obtained for each model.  The best performing model was the Random Forest with a precision, recall and accuracy of 81%, 69%, and 98% respectively."
+    "This web application allows users to use the trained models to detect for to phishing or legitimate based on their HTML content NOT URL features like URL length, etc.")
     
     st.write("The request library and BeautifulSoup4 module in python was used to scrap the webpages, parse and extract features")
     st.write("The source code and datasets are available in the below Github")
@@ -63,7 +64,7 @@ with st.expander("PROJECT DETAILS"):
     st.subheader('Results')
     st.write('I used 7 different ML classifiers of scikit-learn and tested them implementing k-fold cross validation.'
              'Firstly obtained their confusion matrices, then calculated their accuracy, precision and recall scores.'
-             'Comparison table is below:')
+             ' Comparison table is below:')
     
     st.table(ml.df_results)
     st.write('NB --> Gaussian Naive Bayes')
@@ -117,8 +118,7 @@ url = st.text_input('Enter the URL in full. Example: https://example.com')
 # check the url is valid or not
 if st.button('Check URL'):
     with st.spinner("Please wait..."):
-        try:
-                     
+        try:                     
             headers = {
                 "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
                 "accept-language": "en-US,en;q=0.9",
@@ -143,7 +143,7 @@ if st.button('Check URL'):
                     
         except LocationParseError as e: 
             print("URL:An error occurred while parsing the location:", e)
-            st.error("Sorry, something went wrong with the connection", icon="🚨")
+            st.error("Sorry, An error occurred while parsing this location:", icon="🚨")
             st.exception(e)
                         
         except re.exceptions.RequestException as e:
