@@ -21,4 +21,3 @@ This project is written primarily in python and thus utilizes several libraries/
 
 The project uses supervised learning approach to train several ML models to detect phishing.
 
-###  

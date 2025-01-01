@@ -62,17 +62,15 @@ with st.expander("PROJECT DETAILS"):
              'Most of the features extracted using find_all() method of BeautifulSoup module after parsing html.')
 
     st.subheader('Results')
-    st.write('I used 7 different ML classifiers of scikit-learn and tested them implementing k-fold cross validation.'
-             'Firstly obtained their confusion matrices, then calculated their accuracy, precision and recall scores.'
+    st.write('I used 5 different ML classifiers of scikit-learn and tested them implementing k-fold cross validation.'
+             'Firstly obtained their confusion matrices, then calculated their accuracy, precision,recall and F1-scores.'
              ' Comparison table is below:')
     
     st.table(ml.df_results)
     st.write('NB --> Gaussian Naive Bayes')
-    st.write('SVM --> Support Vector Machine')
     st.write('DT --> Decision Tree')
     st.write('RF --> Random Forest')
     st.write('AB --> AdaBoost')
-    st.write('NN --> Neural Network')
     st.write('KN --> K-Neighbours')
 
 with st.expander('SOME PHISHING URLs:'):
@@ -84,8 +82,8 @@ with st.expander('SOME PHISHING URLs:'):
 
 choice = st.selectbox("Please select your machine learning model",
                  [
-                     'Gaussian Naive Bayes', 'Support Vector Machine', 'Decision Tree', 'Random Forest',
-                     'AdaBoost', 'Neural Network', 'K-Neighbours'
+                     'Random Forest', 'Gaussian Naive Bayes', 'Decision Tree', 
+                     'AdaBoost', 'K-Neighbours'
                  ]
                 )
 
@@ -94,9 +92,6 @@ model = ml.nb_model
 if choice == 'Gaussian Naive Bayes':
     model = ml.nb_model
     st.write('GNB model is selected!')
-elif choice == 'Support Vector Machine':
-    model = ml.svm_model
-    st.write('SVM model is selected!')
 elif choice == 'Decision Tree':
     model = ml.dt_model
     st.write('DT model is selected!')
@@ -106,9 +101,6 @@ elif choice == 'Random Forest':
 elif choice == 'AdaBoost':
     model = ml.ab_model
     st.write('AB model is selected!')
-elif choice == 'Neural Network':
-    model = ml.nn_model
-    st.write('NN model is selected!')
 else:
     model = ml.kn_model
     st.write('KN model is selected!')

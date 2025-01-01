@@ -121,8 +121,7 @@ columns = [
         "num_metas",
         "num_sources",
         "num_spans", 
-        "num_tables",
-        
+        "num_tables"
 ]
 
 dataframe = pandas.DataFrame(data=data, columns=columns)
