@@ -35,10 +35,8 @@ X = df.drop('label', axis=1)
 
 Y = df['label']
 
-
 # Split data to train and test
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=10)
-
 
 # Random Forest
 rf_model = RandomForestClassifier(n_estimators=60)
@@ -52,23 +50,17 @@ ab_model = AdaBoostClassifier()
 # Gaussian Naive Bayes
 nb_model = GaussianNB()
 
-
 # KNeighborsClassifier
 kn_model = KNeighborsClassifier()
-
 
 # # Train the model
 # svm_model.fit(x_train, y_train)
 
-
 # # Make some predictions using test data
 # predictions = svm_model.predict(x_test)
 
-
 # # Create a confusion matrix and tn, tp, fn , fp
 # tn, fp, fn, tp = confusion_matrix(y_true=y_test, y_pred=predictions).ravel()
-
-
 
 
 # K-fold cross validation, and K = 5
