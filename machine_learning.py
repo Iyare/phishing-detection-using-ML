@@ -239,7 +239,7 @@ data = {'accuracy': [NB_accuracy, DT_accuracy, RF_accuracy, AB_accuracy,  KN_acc
         'recall': [NB_recall,  DT_recall, RF_recall, AB_recall,  KN_recall],
     }
 
-index = ['NB', 'SVM', 'DT', 'RF', 'AB', 'NN', 'KN']
+index = ['NB', 'DT', 'RF', 'AB', 'KN']
 
 f1_score = {
     'F1-Score': [NB_f1_score, DT_f1_score, RF_f1_score, AB_f1_score, KN_f1_score]
