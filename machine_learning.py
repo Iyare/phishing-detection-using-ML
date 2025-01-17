@@ -53,14 +53,7 @@ nb_model = GaussianNB()
 # KNeighborsClassifier
 kn_model = KNeighborsClassifier()
 
-# # Train the model
-# svm_model.fit(x_train, y_train)
 
-# # Make some predictions using test data
-# predictions = svm_model.predict(x_test)
-
-# # Create a confusion matrix and tn, tp, fn , fp
-# tn, fp, fn, tp = confusion_matrix(y_true=y_test, y_pred=predictions).ravel()
 
 
 # K-fold cross validation, and K = 5
@@ -180,10 +173,13 @@ for i in range(0, K):
     kn_f1_score_list.append(kn_f1_score)
 
 
-RF_accuracy = sum(rf_accuracy_list) / len(rf_accuracy_list)
-RF_precision = sum(rf_precision_list) / len(rf_precision_list)
-RF_recall = sum(rf_recall_list) / len(rf_recall_list)
-RF_f1_score  = sum(rf_f1_score_list) / len(rf_f1_score_list)
+def calculate_average(list):
+    return sum(list) / len(list)
+
+RF_accuracy = calculate_average(rf_accuracy_list)
+RF_precision = calculate_average(rf_precision_list)
+RF_recall = calculate_average(rf_recall_list)
+RF_f1_score  = calculate_average(rf_f1_score_list)
 
 print("Random Forest accuracy ==> ", RF_accuracy)
 print("Random Forest precision ==> ", RF_precision)
@@ -191,20 +187,20 @@ print("Random Forest recall ==> ", RF_recall)
 print("Random Forest f1 score ==> ", RF_f1_score)
 
 
-DT_accuracy = sum(dt_accuracy_list) / len(dt_accuracy_list)
-DT_precision = sum(dt_precision_list) / len(dt_precision_list)
-DT_recall = sum(dt_recall_list) / len(dt_recall_list)
-DT_f1_score = sum(dt_f1_score_list) / len(dt_f1_score_list)
+DT_accuracy = calculate_average(dt_accuracy_list)
+DT_precision = calculate_average(dt_precision_list)
+DT_recall = calculate_average(dt_recall_list)
+DT_f1_score = calculate_average(dt_f1_score_list)
 
 print("Decision Tree accuracy ==> ", DT_accuracy)
 print("Decision Tree precision ==> ", DT_precision)
 print("Decision Tree recall ==> ", DT_recall)
 print("Decision Tree f1 score ==> ", DT_f1_score)
 
-AB_accuracy = sum(ab_accuracy_list) / len(ab_accuracy_list)
-AB_precision = sum(ab_precision_list) / len(ab_precision_list)
-AB_recall = sum(ab_recall_list) / len(ab_recall_list)
-AB_f1_score = sum(ab_f1_score_list) / len(ab_f1_score_list)
+AB_accuracy = calculate_average(ab_accuracy_list)
+AB_precision = calculate_average(ab_precision_list)
+AB_recall = calculate_average(ab_recall_list)
+AB_f1_score = calculate_average(ab_f1_score_list)
 
 print("AdaBoost accuracy ==> ", AB_accuracy)
 print("AdaBoost precision ==> ", AB_precision)
@@ -212,10 +208,10 @@ print("AdaBoost recall ==> ", AB_recall)
 print("AdaBoost f1 score ==> ", AB_f1_score)
 
 
-NB_accuracy = sum(nb_accuracy_list) / len(nb_accuracy_list)
-NB_precision = sum(nb_precision_list) / len(nb_precision_list)
-NB_recall = sum(nb_recall_list) / len(nb_recall_list)
-NB_f1_score = sum(nb_f1_score_list) / len(nb_f1_score_list)
+NB_accuracy = calculate_average(nb_accuracy_list)
+NB_precision = calculate_average(nb_precision_list)
+NB_recall = calculate_average(nb_recall_list)
+NB_f1_score = calculate_average(nb_f1_score_list)
 
 print("Gaussian Naive Bayes accuracy ==> ", NB_accuracy)
 print("Gaussian Naive Bayes precision ==> ", NB_precision)
@@ -223,10 +219,10 @@ print("Gaussian Naive Bayes recall ==> ", NB_recall)
 print("Gaussian Naive Bayes f1 score ==> ", NB_f1_score)
 
 
-KN_accuracy = sum(kn_accuracy_list) / len(kn_accuracy_list)
-KN_precision = sum(kn_precision_list) / len(kn_precision_list)
-KN_recall = sum(kn_recall_list) / len(kn_recall_list)
-KN_f1_score = sum(kn_f1_score_list) / len(kn_f1_score_list)
+KN_accuracy = calculate_average(kn_accuracy_list)
+KN_precision = calculate_average(kn_precision_list)
+KN_recall = calculate_average(kn_recall_list)
+KN_f1_score = calculate_average(kn_f1_score_list)
 
 print("K-Neighbours Classifier accuracy ==> ", KN_accuracy)
 print("K-Neighbours Classifier precision ==> ", KN_precision)

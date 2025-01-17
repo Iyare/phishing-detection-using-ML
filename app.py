@@ -127,10 +127,10 @@ if st.button('Check URL'):
                 vector = [fe.create_vector(soup)]  # it should be 2d array, so I added []
                 result = model.predict(vector)
                 if result[0] == 0:
-                    st.success("This web page seems a legitimate!")
+                    st.success("This web page seems a legitimate! You can proceed!")
                     st.balloons()
                 else:
-                    st.warning("Attention! This is a potential PHISHING site!")
+                    st.warning("Attention! This is a potential PHISHING site! Do not share any sensitive information on this webpage")
                     # st.snow()
                     
         except LocationParseError as e: 
